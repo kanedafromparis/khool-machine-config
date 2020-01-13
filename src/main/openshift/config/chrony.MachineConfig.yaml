@@ -1,0 +1,23 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: playground
+    #custom-chrony: chrony
+#?    machine.openshift.io/cluster-api-machine-type: worker-testing
+  name: 50-worker-testing-conf-chrony
+spec:
+  config:
+    ignition:
+      version: 2.2.0
+    storage:
+      files:
+      - contents:
+          # osx :
+          # echo "data:$(file -bI chrony.conf | tr -d ' ' );base64,$(cat chrony.conf | base64 )"
+          # linux:
+          # echo "data:$(file -bi chrony.conf | tr -d ' ');base64,$(cat chrony.conf | base64 -w0)"
+          source: data:text/plain;charset=us-ascii;base64,IyBVc2UgQVdTIHNlcnZlcgpzZXJ2ZXIgMTY5LjI1NC4xNjkuMTIzIHByZWZlciBpYnVyc3QKZHJpZnRmaWxlIC92YXIvbGliL2Nocm9ueS9kcmlmdAptYWtlc3RlcCAxLjAgMwpydGNzeW5jCmtleWZpbGUgL2V0Yy9jaHJvbnkua2V5cwpsZWFwc2VjdHogcmlnaHQvVVRDCmxvZ2RpciAvdmFyL2xvZy9jaHJvbnk=
+        filesystem: root
+        mode: 420
+        path: /etc/chrony.conf

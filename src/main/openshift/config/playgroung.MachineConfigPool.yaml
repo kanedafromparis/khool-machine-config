@@ -1,0 +1,17 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfigPool
+metadata:
+  generation: 2
+  labels:
+    playgound: OK
+  name: worker-playground
+spec:
+  configuration:
+    name: rendered-worker
+  machineConfigSelector:
+    matchLabels:
+      machineconfiguration.openshift.io/role: playground
+  nodeSelector:
+    matchLabels:
+      node-role.kubernetes.io/worker: my-test-playground
+  paused: true

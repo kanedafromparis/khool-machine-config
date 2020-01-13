@@ -1,0 +1,21 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  annotations:
+  generation: 2
+  labels:
+    playground: OK
+    machineconfiguration.openshift.io/role: playground
+  name: 50-worker-chrony-playground
+spec:
+  config:
+    ignition:
+      version: 2.2.0
+    storage:
+      files:
+        - contents:
+            source: >-
+              data:text/plain;charset=us-ascii;base64,IyBVc2UgQVdTIHNlcnZlcgpzZXJ2ZXIgMTY5LjI1NC4xNjkuMTIzIHByZWZlciBpYnVyc3QKZHJpZnRmaWxlIC92YXIvbGliL2Nocm9ueS9kcmlmdAptYWtlc3RlcCAxLjAgMwpydGNzeW5jCmtleWZpbGUgL2V0Yy9jaHJvbnkua2V5cwpsZWFwc2VjdHogcmlnaHQvVVRDCmxvZ2RpciAvdmFyL2xvZy9jaHJvbnk=
+          filesystem: root
+          mode: 420
+          path: /etc/chrony.conf
